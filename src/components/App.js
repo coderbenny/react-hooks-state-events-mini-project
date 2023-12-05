@@ -12,7 +12,7 @@ import { CATEGORIES, TASKS } from "../data";
 function App() {
   const [allItems, setAllItems] = useState(TASKS)
   const [filterBy, setFilterBy] = useState("All")
-  console.log(filterBy)
+  // console.log(allItems)
 
   function handleDeleteTask(updatedItems) {
     setAllItems(updatedItems)
@@ -26,13 +26,16 @@ function App() {
     setAllItems(filteredItems)
   }
 
-
+  function handleTaskSubmit(newItem) {
+    const updatedItem = [...allItems, newItem]
+    setAllItems(updatedItem)
+  }
 
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter onCategoryChange={handleCategoryChange} categories={CATEGORIES} filter={filterBy} />
-      <NewTaskForm />
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={handleTaskSubmit} />
       <TaskList onTaskDelete={handleDeleteTask} tasks={allItems} />
     </div>
   );
