@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-function CategoryFilter({ categories }) {
-  const [filterBy, setFilterBy] = useState("All");
-
+function CategoryFilter({ categories, onCategoryChange, filter }) {
 
   function handleClick(event) {
     const btnCategory = event.target.textContent
-    setFilterBy(btnCategory)
+    onCategoryChange(btnCategory)
   }
 
   return (
@@ -16,7 +14,7 @@ function CategoryFilter({ categories }) {
 
       {categories.map((category) => {
         return (
-          <button key={category} className={filterBy === category ? "selected " : ""} onClick={handleClick}>{category}</button>
+          <button key={category} className={filter === category ? "selected " : ""} onClick={handleClick}>{category}</button>
         )
       })}
 

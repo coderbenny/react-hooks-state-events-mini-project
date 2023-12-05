@@ -11,16 +11,27 @@ import { CATEGORIES, TASKS } from "../data";
 
 function App() {
   const [allItems, setAllItems] = useState(TASKS)
-  console.log(allItems)
+  const [filterBy, setFilterBy] = useState("All")
+  console.log(filterBy)
 
   function handleDeleteTask(updatedItems) {
     setAllItems(updatedItems)
   }
 
+  function handleCategoryChange(btnCategory) {
+    setFilterBy(btnCategory)
+    const filteredItems = allItems.filter((item) =>
+      btnCategory === "All" ? allItems : item.category === btnCategory
+    )
+    setAllItems(filteredItems)
+  }
+
+
+
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES} />
+      <CategoryFilter onCategoryChange={handleCategoryChange} categories={CATEGORIES} filter={filterBy} />
       <NewTaskForm />
       <TaskList onTaskDelete={handleDeleteTask} tasks={allItems} />
     </div>
