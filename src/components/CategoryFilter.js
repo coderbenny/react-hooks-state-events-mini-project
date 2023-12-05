@@ -2,17 +2,11 @@ import React, { useState } from "react";
 
 function CategoryFilter({ categories }) {
   const [filterBy, setFilterBy] = useState("All");
-  const [isSelected, setIsSelected] = useState(false)
-  const [btnClass, setBtnClass] = useState("")
 
-  console.log("Filter:" + filterBy)
-  console.log("Is it selected:" + isSelected)
-  console.log("button class:" + btnClass)
 
   function handleClick(event) {
     const btnCategory = event.target.textContent
     setFilterBy(btnCategory)
-
   }
 
   return (
