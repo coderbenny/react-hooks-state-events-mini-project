@@ -10,7 +10,7 @@ function TaskList({ tasks }) {
         <ul>
           {tasks.map((task) => {
             return (
-              <Task category={task.category} text={task.text} />
+              <Task key={task.text} category={task.category} text={task.text} />
             )
           })}
         </ul>
